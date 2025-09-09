@@ -45,7 +45,7 @@ header {
     border-bottom: solid 1px lightgrey ; padding: 5px 5px 5px 0 ; margin: 0 ;
     height: 38px ; display: flex ; align-items: center }
 .logo { margin: 0 8px 0 12px ; position: relative ; top: 3px }
-.menu-title { font-size: 0.85rem ; font-weight: 600 ; padding-right: 3px }
+.menu-title { font-size: 1rem ; font-weight: 600 ; padding: 4px }
 .master-toggle { margin-left: auto ; display: flex }
 
 /* Menu item elements */
@@ -74,7 +74,7 @@ div.menu-entry > input.slider {
 }
 .slider::-webkit-slider-runnable-track {
     height: 5px ; border-radius: 10px ;
-    background: linear-gradient(to right,
+    background: linear-gradient(to right, /* eslint-disable-line */
         var(--track-filled-color) 0%, var(--track-filled-color) var(--track-fill-percent),
         var(--track-empty-color) var(--track-fill-percent), var(--track-empty-color) 100%
     )
@@ -84,6 +84,8 @@ div.menu-entry > input.slider {
     border: 4px solid var(--thumb-border) ; border-radius: 16px ; cursor: ew-resize ; transition: transform 0.05s ease
 }
 .slider::-webkit-slider-thumb:hover { transform: scaleX(1.325) }
+.edit-link { text-transform: uppercase ; font-size: 0.65em ; margin-left: 0.75em ; opacity: 0.7 ; cursor: pointer }
+.edit-link:hover { opacity: 1 }
 
 /* Toggle elements */
 .toggle .track {

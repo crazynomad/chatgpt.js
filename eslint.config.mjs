@@ -18,8 +18,8 @@ export default [
             ecmaVersion: 'latest', sourceType: 'script',
             globals: {
                 ...globals.browser, ...globals.greasemonkey, ...globals.node, app: 'writable', chatgpt: 'readonly',
-                chrome: 'readonly', config: 'writable', dom: 'readonly', env: 'writable', icons: 'writable',
-                modals: 'writable', settings: 'writable', ui: 'readonly'
+                chrome: 'readonly', config: 'writable', dom: 'readonly', env: 'writable', feedback: 'readonly',
+                icons: 'writable', modals: 'writable', settings: 'writable', ui: 'readonly'
             }
         },
         plugins: { 'import': importPlugin, 'js-styles': stylisticJS, regexp },
@@ -49,14 +49,14 @@ export default [
         rules: { ...css.configs.recommended.rules, 'css/no-important': 'off' }
     },
     {
-        files: ['**/*.html'], languageOptions: { parser: htmlParser }, plugins: { '@html-eslint': html },
+        files: ['**/*.html'], languageOptions: { parser: htmlParser }, plugins: { html },
         rules: {
-            ...html.configs['flat/recommended'].rules,
-            '@html-eslint/require-title': 'off', // allow missing title tags
-            '@html-eslint/quotes': 'off', // allow unquoted attrs for compactness
-            '@html-eslint/attrs-newline': 'off', // allow multi-attrs in single line
-            '@html-eslint/require-img-alt': 'off', // allow img tags w/o alt attributes
-            '@html-eslint/indent': 'off', '@html-eslint/element-newline': 'off' // allow whitespace anywhere
+            ...html.configs.recommended.rules,
+            'html/require-title': 'off', // allow missing title tags
+            'html/quotes': 'off', // allow unquoted attrs for compactness
+            'html/attrs-newline': 'off', // allow multi-attrs in single line
+            'html/require-img-alt': 'off', // allow img tags w/o alt attributes
+            'html/indent': 'off', 'html/element-newline': 'off' // allow whitespace anywhere
         }
     },
     { files: ['**/*.json'], language: 'json/json', ...json.configs.recommended },

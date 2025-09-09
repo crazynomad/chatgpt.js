@@ -48,10 +48,14 @@ window.settings = {
 
     load(...keys) {
         return Promise.all(keys.flat().map(async key => // resolve promise when all keys load
-            config[key] = (await chrome.storage.local.get(key))[key] ?? initDefaultVal(key)))
-        function initDefaultVal(key) {
-            const ctrlData = settings.controls?.[key]
-            return ctrlData?.defaultVal ?? ( ctrlData?.type == 'slider' ? 100 : ctrlData?.type == 'toggle' )
+            config[key] = processKey(key, (await chrome.storage.local.get(key))[key])))
+        function processKey(key, val) {
+            const ctrl = settings.controls?.[key]
+            if (val != undefined && ( // validate stored val
+                    (ctrl?.type == 'toggle' && typeof val != 'boolean')
+                    || (ctrl?.type == 'slider' && isNaN(parseFloat(val)))
+            )) val = undefined
+            return val ?? (ctrl?.defaultVal ?? (ctrl?.type == 'slider' ? 100 : false))
         }
     },
 
